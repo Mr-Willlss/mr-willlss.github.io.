@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0f1a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Learn Koine Greek" />
+  <title>Learn Koine Greek</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icon-192.png" />
+  <link rel="apple-touch-icon" href="assets/images/icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="app" class="layout">
+    <button id="sidebar-toggle-floating" class="hamburger floating" aria-label="Toggle sidebar">
+      ☰
+    </button>
+    <aside class="sidebar">
+      <button id="sidebar-toggle" class="hamburger" aria-label="Toggle sidebar">
+        ☰
+      </button>
+      <div class="side-logo">
+        <div class="logo-mark">
+          <img src="assets/images/mascot-logo.svg" alt="Greek Quest mascot logo" />
+        </div>
+        <div>
+          <h1>Learn Koine Greek</h1>
+          <p class="eyebrow">for beginners</p>
+        </div>
+      </div>
+      <nav class="side-nav">
+        <button id="map-btn" class="nav-btn" aria-label="World map">Map</button>
+        <button id="profile-btn" class="nav-btn" aria-label="Profile">Profile</button>
+        <button id="options-btn" class="nav-btn" aria-label="Options">Options</button>
+        <button id="tour-btn" class="nav-btn" aria-label="Tour">Tour</button>
+        <button id="about-btn" class="nav-btn" aria-label="About">About</button>
+        <button id="contact-btn" class="nav-btn" aria-label="Contact us">Contact us</button>
+      </nav>
+      <div class="side-progress">
+        <p class="eyebrow">Level info</p>
+        <div class="stat-row">
+          <span id="stat-level">Level 1</span>
+          <span id="stat-xp">XP 0</span>
+          <span id="stat-hearts">Hearts 5</span>
+        </div>
+        <div class="progress">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <span id="progress-text" class="eyebrow">0% complete</span>
+      </div>
+      <button id="sign-in-btn" class="btn ghost">Sign in</button>
+      <button id="log-in-btn" class="btn ghost">Log in</button>
+      <button id="logout-btn" class="btn ghost" style="display:none">Log out</button>
+    </aside>
+
+    <div class="content">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Welcome back</p>
+          <h2>Learn Koine Greek</h2>
+        </div>
+        <div class="hero-chip">
+          <p class="eyebrow">Hint / Status</p>
+          <p id="hero-status"></p>
+        </div>
+      </header>
+
+      <section class="map-shell" aria-label="World map">
+        <div class="section-head">
+          <h3>Worlds & Levels</h3>
+          <div class="lesson-progress">
+          <div class="lesson-progress__meta">
+            <span id="lesson-category" class="eyebrow">Category: —</span>
+            <span id="lesson-progress-text" class="eyebrow">Lesson: —</span>
+            <div class="lesson-hearts-panel">
+              <span id="lesson-hearts" class="eyebrow">Hearts: 5</span>
+              <div id="lesson-hearts-diagram" class="heart-diagram" aria-label="5 of 5 hearts remaining"></div>
+            </div>
+          </div>
+            <div class="lesson-progress__bar"><span id="lesson-progress-bar"></span></div>
+          </div>
+        </div>
+        <div id="world-map" class="world-map"></div>
+      </section>
+
+      <section class="lesson-panel" id="lesson-panel" aria-label="Lesson play area">
+        <div class="lesson-header">
+          <div>
+            <p class="eyebrow" id="lesson-type">Choose a lesson to begin</p>
+            <h3 id="lesson-title">Welcome</h3>
+          </div>
+          <span id="lesson-xp" class="pill">+0 XP</span>
+        </div>
+
+        <div class="teacher" id="teacher" aria-hidden="true"></div>
+        <div class="mascot-cheer" aria-hidden="true">
+          <img src="assets/images/mascot-logo.svg" alt="" />
+        </div>
+
+        <div class="lesson-body" id="lesson-body">
+          <div class="welcome">
+            <h4>Tap a lesson chip to start.</h4>
+            <p>Connect to the internet for speech and sync. Last saved state will pop in automatically.</p>
+          </div>
+        </div>
+
+        <div class="lesson-footer">
+          <button id="hint-btn" class="btn ghost" type="button" disabled>Hint</button>
+          <button id="check-btn" class="btn" type="button" disabled>Check</button>
+          <button id="skip-btn" class="btn ghost" type="button" disabled>Skip</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="intro-overlay" class="intro-overlay" aria-hidden="true">
+    <div class="intro-card">
+      <div class="logo-mark">
+        <img src="assets/images/mascot-logo.svg" alt="Greek Quest mascot logo" />
+      </div>
+      <p class="eyebrow">Loading</p>
+      <h3 class="intro-title" aria-label="Learn Koine Greek">
+        <span>L</span><span>e</span><span>a</span><span>r</span><span>n</span>
+        <span>K</span><span>o</span><span>i</span><span>n</span><span>e</span>
+        <span>G</span><span>r</span><span>e</span><span>e</span><span>k</span>
+      </h3>
+      <p class="muted intro-note">Connect to the internet for speech and sync. Last saved state will pop in automatically.</p>
+      <button id="intro-start" class="btn">Start</button>
+    </div>
+  </div>
+
+  <div id="tour-overlay" class="tour-overlay" aria-hidden="true">
+    <div class="tour-spotlight"></div>
+    <div class="tour-card">
+      <div class="mascot">
+        <div class="mascot-face"></div>
+        <div class="mascot-body"></div>
+      </div>
+      <div class="tour-content">
+        <h3 id="tour-title">Welcome</h3>
+        <p id="tour-text">Let me show you around.</p>
+        <div class="tour-actions">
+          <button id="tour-skip" class="btn ghost">Skip</button>
+          <button id="tour-next" class="btn">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+
+  <script src="firebase.js"></script>
+  <script src="auth.js"></script>
+  <script src="spacedRepetition.js"></script>
+  <script src="speech.js"></script>
+  <script src="teacherCharacter.js"></script>
+  <script src="lessons.js"></script>
+  <script src="map.js"></script>
+  <script src="game.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch((error) => {
+          console.error("Service worker registration failed:", error);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
