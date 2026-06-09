@@ -3,7 +3,7 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.learnkoinegreek.twa",
+      "package_name": "com.learnbiblicallanguages.twa",
       "sha256_cert_fingerprints": [
         "DA:05:A3:2C:A7:55:91:8D:AC:FA:84:8A:B1:70:36:3E:20:47:D7:C3:AA:D4:DE:60:55:76:50:B6:03:61:89:D1"
       ]
